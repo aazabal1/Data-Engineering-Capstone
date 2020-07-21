@@ -1,0 +1,68 @@
+##### fact_inmig:
+
+* CID: double PRIMARY KEY - Unique identifier for each traveller
+* citizenship_country: string - Traveller's citizenship country
+* residence_country: string - Traveller's residence country
+* arrival_airport: string - Traveller's arrival airport (3 character string, ie: Los Angeles = LOS)
+* arrival_date: date - Traveller's arrival date (format: YYYY-MM-DD)
+* departure_date: date - Traveller's departure date (format: YYYY-MM-DD)
+* age: double - Traveller's age
+* generic_visa_type: string - Traveller's visa type. Options are:
+                        'Business'
+                        'Pleasure'
+                        'Student'
+* arrival_flag: string - Arrival Flag - admitted or paroled into the U.S.
+* departure_flag: string - Departure Flag - Departed, lost I-94 or is deceased
+* gender: string - Traveller's gender
+* airline: string - Airline used by traveller to arrive to the USA
+* arrival_flight_number: string - Flight number in which traveller arrived in the USA 
+* visa_type: string - Visa type used by traveller to enter the USA
+* arrival_state: string - USA state in which traveller arrived (format: 2 character string, ie: California=CA)
+
+The dimension tables are:
+
+##### dim_airports:
+
+* ident: string PRIMARY KEY - Unique airport identifier
+* type: string - Airport type. Options are:
+                'small_airport'
+                'medium_airport'
+                'large_airport'
+* elevation_ft: string - Airport's elevation in feet
+* municipality: string - Airport's municipality it belongs to
+* iata_code: string - Airport's IATA code (format: 3 character string)
+* State: string - Airpor's USA state it belongs to
+
+##### dim_demographics:
+
+* City_State: string PRIMARY KEY - City and state described (format: cityname_statecode, ie: 'Los Angeles_CA')
+* City: string - City described 
+* Median_Age: string - Median age of city described
+* Male_Population: string - Male population of city described
+* Female_Population: string - Female population of city described
+* Total_Population: string - Total population of city described
+* Veterans: string - Number of veterans of city described
+* Foreign: string - Number of foreigners of city described
+* Avg_House_Size: string - Average household size of city described
+* State: string - State of city decribed (format: 2 characters string)
+
+##### dim_temperature:
+
+* dt: string - Unique date (format YYYY-MM-DD)
+* AverageTemperature: string - Average temperature of given citty in given day
+* AverageTemperatureUncertainty: string- Uncertainty of calculated average temperature of given citty in given day
+* Latitude: string - Latitude of given city
+* Longitude: string - Longitiude of given city
+* year: integer - Year analysed
+* City: string - Name of city analysed
+* PRIMARY KEY (dt, Latitude, Longitude)
+
+##### dim_time:
+
+* date: date PRIMARY KEY - Unique date (format YYYY-MM-DD)
+* day: integer - Day analysed
+* week: integer - Week analysed (1 to 52)
+* weekday: integer - Weekday analysed (1 to 7)
+* year_day: integer - Year day analysed (1 to 366)
+* year: integer - Year analysed
+* month: integer - Month analysed (1 to 12)
